@@ -1,3 +1,14 @@
-<p>
-  results works!
-</p>
+<h2>Results</h2>
+<div nz-row nzGutter="16">
+  <div nz-col class="gutter-row" nzSpan="6" *ngFor="let result of results; let i = index">
+    <div class="gutter-box">
+      <nz-card [nzLoading]="false">
+        <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="result.getFullName()"
+          nzDescription="This is the description"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #avatarTemplate>
+      <nz-avatar [nzSrc]="result.getAvatar()"></nz-avatar>
+    </ng-template>
+  </div>
+</div>

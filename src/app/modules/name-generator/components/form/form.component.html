@@ -1,3 +1,32 @@
-<p>
-  form works!
-</p>
+<form nz-form [formGroup]="formGenerator" (submit)="submit($event)">
+  <h2>Form</h2>
+  <nz-form-item>
+    <nz-select id="gender" formControlName="gender" nzPlaceHolder="Any gender">
+      <nz-option nzValue="male" nzLabel="male"></nz-option>
+      <nz-option nzValue="female" nzLabel="female"></nz-option>
+    </nz-select>
+  </nz-form-item><!-- End Gender field-->
+
+  <nz-form-item>
+    <nz-select nzPlaceHolder="Any region" formControlName="nat" nzMode="multiple">
+      <nz-option *ngFor="let option of regionListOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+  </nz-form-item><!-- End regions field-->
+
+  <nz-form-item>
+    <nz-form-control style="text-align:right">
+      <nz-input-number nzPlaceHolder="Number of result" formControlName="results" [nzMin]="1" [nzStep]="1"
+        style="max-width: 180px; width: 100%"></nz-input-number>
+      <div style="text-align: right" *ngIf="formGenerator.get('results')?.dirty">
+        <nz-form-explain class="gutter-row" *ngIf="formGenerator.get('results')?.hasError('max')">
+          You can only retreive 12 names at a time
+        </nz-form-explain>
+        <nz-form-explain class="gutter-row" *ngIf="formGenerator.get('results')?.hasError('required')">
+          This field is required
+        </nz-form-explain>
+      </div>
+    </nz-form-control>
+  </nz-form-item><!-- End numberOfNames field-->
+
+  <button nz-button nzBlock nzType="primary">Generate</button>
+</form>

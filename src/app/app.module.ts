@@ -9,6 +9,7 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NameGeneratorModule } from './modules/name-generator/name-generator.module';
+import { Regions } from './models/regions.model';
 
 registerLocaleData(en);
 
@@ -24,7 +25,10 @@ registerLocaleData(en);
     NgZorroAntdModule,
     NameGeneratorModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: Regions, useClass: Regions }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
