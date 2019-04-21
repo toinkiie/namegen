@@ -1,4 +1,33 @@
 
-<app-form (generate)="generate($event)"></app-form>
+<nz-layout class="layout">
+  <nz-affix>
+    <nz-header>
+      <h1 class="app-name">Name Generator</h1>
+    </nz-header>
+  </nz-affix>
+  
+  <nz-content>
+    <div nz-row nzGutter="16">
 
-<app-results [results]="results"></app-results>
+      <div nz-col class="gutter-row" nzLg="7" style="padding: 30px 0" [hidden]="isFormHidden">
+        <div class="gutter-box">
+          <app-form (generate)="generate($event)" (reset)="reset($event)" [loading]="loading"></app-form>
+        </div>
+      </div><!-- .gutter-row-->
+
+      <div nz-col class="gutter-row" nzLg="17" style="padding: 30px 0">
+        <div class="gutter-box">
+          <app-results 
+            *ngIf="results || loading" 
+            [results]="results" 
+            [loading]="loading"
+            [numberOfResult]="numberOfResults"
+            (regenerate)="regenerate($event)"
+            (toggleForm)="reset($event)"
+            >
+          </app-results>
+        </div>
+      </div><!-- .gutter-row-->
+    </div>
+  </nz-content>
+</nz-layout>

@@ -1,14 +1,43 @@
-<h2>Results</h2>
-<div nz-row nzGutter="16">
-  <div nz-col class="gutter-row" nzSpan="6" *ngFor="let result of results; let i = index">
-    <div class="gutter-box">
-      <nz-card [nzLoading]="false">
-        <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="result.getFullName()"
-          nzDescription="This is the description"></nz-card-meta>
-      </nz-card>
+<nz-card class="result-card">
+  <nz-affix [nzOffsetTop]="70">
+    <div class="mobile-action">
+      <button nz-button nzType="primary" (click)="regenerate.emit()"><i nz-icon [type]="'sync'"></i> Generate Names</button>
+      <button nz-button nzType="default" (click)="toggleForm.emit()">Toggle Form</button>
     </div>
-    <ng-template #avatarTemplate>
-      <nz-avatar [nzSrc]="result.getAvatar()"></nz-avatar>
-    </ng-template>
+  </nz-affix>
+  <h2>Results</h2>
+  <div nz-row nzGutter="16">
+
+    <div *ngIf="loading">
+      <div nz-col class="gutter-row result-item" nzMd="12" nzLg="8" nzXl="6" *ngFor="let result of numberOfLoader()">
+        <div class="gutter-box">
+          <nz-card>
+            <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="{ size: 'medium' }"></nz-skeleton>
+          </nz-card>
+        </div>
+      </div>
+    </div><!-- Skeleton preloader -->
+
+    <div nz-col class="gutter-row result-item" nzMd="12" nzLg="8" nzXl="6" *ngFor="let result of results">
+      <div class="gutter-box">
+        <nz-card>
+          <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="result.getFullName() | titlecase "
+            [nzDescription]="'Date of Birth: ' + result.getDateOfBirth()">
+          </nz-card-meta>
+          <div class="contact-number">
+            <i nz-icon [type]="'phone'" nzRotate="45"></i>
+            <span>{{ result.getPhone() }}</span>
+          </div>
+          
+          <div class="contact-number">
+            <i nz-icon [type]="'mobile'" nzRotate="45"></i>
+            <span>{{ result.getCell() }}</span>
+          </div>
+        </nz-card>
+      </div>
+      <ng-template #avatarTemplate>
+        <nz-avatar [nzSrc]="result.getAvatar()"></nz-avatar>
+      </ng-template>
+    </div>
   </div>
-</div>
+</nz-card>

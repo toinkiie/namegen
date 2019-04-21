@@ -1,5 +1,86 @@
-// -------- import official less file -----------
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
-@import "./less/_typography.less";
-@import "./less/_theme.less";
+// -------- Colors -----------
+@blue-6: #0082a9;
+@primary-color : @blue-6;
+@normal-color : #2F333A;
+
+// -------- Layout Variables -----------
+@layout-header-background : #fff;
+@layout-header-height : 70px;
+@layout-body-background : #fafafa;
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.4rem;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, b, strong {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 3.6rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+// -------- Layout -----------
+.ant-layout-content {
+    min-height: calc(100vh - 70px);
+    background: transparent;
+    width: 100%;
+    align-self: center;
+    max-width: 1600px;
+    padding: 0 25px;
+}
+
+.ant-layout-header {
+    color: @primary-color;
+    text-align: center;
+    
+    h1 {
+        font-size: 2.3rem;
+    }
+}
+
+
+// -------- Card -----------
+:host {
+    .ant-card {
+        border-radius: 7px;
+    }
+
+   
+}
+.ant-skeleton-with-avatar .ant-skeleton-content .ant-skeleton-title+.ant-skeleton-paragraph {
+    padding: 0;
+    margin: 0;
+}
+// -------- Form -----------
+.form-action {
+    margin: 100px 0;
+}
+
+
+.ant-form {
+    font-family: 'Raleway', sans-serif;
+}
+
+// -------- Input -----------
+.ant-select-dropdown-menu-item {
+    &:hover {
+        background-color: @primary-color;
+        color: #fff;
+    }
+}

@@ -5,7 +5,6 @@ export class Regions {
   private listOptions: ListOptions[] = [
     { label: 'Australia', value: 'AU' },
     { label: 'Brazil', value: 'BR' },
-    { label: 'China ', value: 'CH' },
     { label: 'Germany ', value: 'DE' },
     { label: 'Denmark ', value: 'DK' },
     { label: 'Finland', value: 'FI' },
@@ -16,6 +15,7 @@ export class Regions {
     { label: 'Norway', value: 'NO' },
     { label: 'Netherlands', value: 'NL' },
     { label: 'New Zealand', value: 'NZ' },
+    { label: 'Switzerland ', value: 'CH' },
     { label: 'Turkey', value: 'TR' },
     { label: 'United States', value: 'US' }
   ];

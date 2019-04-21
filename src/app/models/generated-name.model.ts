@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 interface Name {
   title: string;
   first: string;
@@ -25,12 +27,24 @@ export class GeneratedName {
     Object.assign(this, obj);
   }
 
-  getFullName() {
+  getFullName(): string {
     return `${this.name.first} ${this.name.last}`;
   }
 
-  getAvatar() {
+  getAvatar(): string {
     return this.picture.large;
+  }
+
+  getDateOfBirth(): string {
+    return moment(this.dob.date).format('MM/DD/YYYY');
+  }
+
+  getCell() {
+    return this.cell;
+  }
+
+  getPhone() {
+    return this.phone;
   }
 }
 

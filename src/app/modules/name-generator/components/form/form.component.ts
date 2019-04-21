@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Regions } from '@namegen/app/models/regions.model';
-import { ListOptions } from '@namegen/app/interfaces/list-options';
-import { GenerateRequest } from '@namegen/app/interfaces/generate-request';
+import { GenerateRequest } from '@namegen/app/models/generate-request';
+import { ListOptions } from '@namegen/app/models/list-options.model';
 
 @Component({
   selector: 'app-form',
@@ -11,10 +11,13 @@ import { GenerateRequest } from '@namegen/app/interfaces/generate-request';
 })
 export class FormComponent implements OnInit {
 
+  @Input() loading: boolean;
   @Output() generate: EventEmitter<GenerateRequest> = new EventEmitter;
+  @Output() reset: EventEmitter<void> = new EventEmitter;
 
   formGenerator: FormGroup;
   regionListOptions: ListOptions[];
+  selectedValue: null;
 
   constructor(private fb: FormBuilder, private regions: Regions) { }
 
@@ -22,7 +25,7 @@ export class FormComponent implements OnInit {
     this.formGenerator = this.fb.group({
       gender: [null],
       nat: [null],
-      results: [null, [Validators.required, Validators.max(12)]]
+      results: [null, [Validators.max(12)]]
     });
 
     this.regionListOptions = this.regions.getListOptions();
@@ -38,10 +41,15 @@ export class FormComponent implements OnInit {
     if (this.formGenerator.valid) {
       this.generate.emit({
         gender: this.formGenerator.get('gender').value,
-        results: this.formGenerator.get('results').value,
+        results: this.formGenerator.get('results').value ? this.formGenerator.get('results').value : 12,
         nat: this.transformNat(this.formGenerator.get('nat').value)
       });
     }
+  }
+
+  resetForm() {
+    this.formGenerator.reset();
+    this.reset.emit();
   }
 
   private transformNat(nat: [string]): string {

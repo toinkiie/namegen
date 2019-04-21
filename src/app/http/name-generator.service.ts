@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { GenerateRequest } from '../models/generate-request';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 import { GeneratedName } from '../models/generated-name.model';
 import { environment } from '@namegen/environments/environment';
 
