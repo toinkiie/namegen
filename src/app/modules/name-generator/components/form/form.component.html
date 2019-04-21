@@ -1,6 +1,6 @@
 <nz-card>
   <h2>Form</h2>
-  <form nz-form [formGroup]="formGenerator" (submit)="submit($event)">
+  <form nz-form [formGroup]="formGenerator" (submit)="submit()">
     <nz-form-item>
       <nz-select id="gender" formControlName="gender" nzPlaceHolder="Any gender" nzAllowClear>
         <nz-option [nzValue]="'male'" nzLabel="Male"></nz-option>

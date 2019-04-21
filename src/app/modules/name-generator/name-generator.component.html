@@ -11,7 +11,7 @@
 
       <div nz-col class="gutter-row" nzLg="7" style="padding: 30px 0" [hidden]="isFormHidden">
         <div class="gutter-box">
-          <app-form (generate)="generate($event)" (reset)="reset($event)" [loading]="loading"></app-form>
+          <app-form (generate)="generate($event)" (reset)="reset()" [loading]="loading"></app-form>
         </div>
       </div><!-- .gutter-row-->
 
@@ -22,8 +22,8 @@
             [results]="results" 
             [loading]="loading"
             [numberOfResult]="numberOfResults"
-            (regenerate)="regenerate($event)"
-            (toggleForm)="reset($event)"
+            (regenerate)="regenerate()"
+            (toggleForm)="reset()"
             >
           </app-results>
         </div>
